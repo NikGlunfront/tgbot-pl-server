@@ -65,6 +65,7 @@ app.listen(PORT)
 
 app.post('/web-data', async (req, res) => {
     const {queryId, products, totalPrice} = req.body
+    await bot.sendMessage(658318611, 'Спасибо за обратную связь')
     try {
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
