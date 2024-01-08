@@ -19,7 +19,7 @@ bot.on('message', async (msg) => {
     console.log(msg)
 
   // send a message to the chat acknowledging receipt of their message
-    // bot.sendMessage(chatId, 'Received your message');
+    bot.sendMessage(chatId, 'Received your message');
 
     if (text === '/start') {
 
