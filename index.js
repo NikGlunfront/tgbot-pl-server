@@ -64,27 +64,27 @@ const PORT = 8000;
 app.listen(PORT)
 
 app.post('/web-data', async (req, res) => {
-    const {queryId, products, totalPrice} = req.body
+    // const {queryId, products, totalPrice} = req.body
     await bot.sendMessage(658318611, 'Спасибо за обратную связь')
-    try {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title: 'Успешная покупка',
-            input_message_content: {message_text: 'Поздравляю с покупкой, вы приобрели товар на сумму ' + totalPrice}
-        })
+    // try {
+    //     await bot.answerWebAppQuery(queryId, {
+    //         type: 'article',
+    //         id: queryId,
+    //         title: 'Успешная покупка',
+    //         input_message_content: {message_text: 'Поздравляю с покупкой, вы приобрели товар на сумму ' + totalPrice}
+    //     })
 
-        return res.status(200).json({})
+    //     return res.status(200).json({})
         
-    } catch (error) {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title: 'Успешная покупка',
-            input_message_content: {message_text: 'Не удалось приобрести товар'}
-        })
-        return res.status(500).json({})
-    }
+    // } catch (error) {
+    //     await bot.answerWebAppQuery(queryId, {
+    //         type: 'article',
+    //         id: queryId,
+    //         title: 'Успешная покупка',
+    //         input_message_content: {message_text: 'Не удалось приобрести товар'}
+    //     })
+    //     return res.status(500).json({})
+    // }
 })
 
 app.get('/', (req, res) => {
