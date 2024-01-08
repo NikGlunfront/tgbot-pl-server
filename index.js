@@ -85,3 +85,7 @@ app.post('/web-data', async (req, res) => {
         return res.status(500).json({})
     }
 })
+
+app.get('/', (req, res) => {
+    res.json({ username: 'Flavio' })
+})
