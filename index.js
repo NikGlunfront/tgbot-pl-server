@@ -3,11 +3,11 @@ const express = require('express');
 const cors = require('cors');
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'glunfront',
-  host: 'localhost',
-  database: 'gl_pl_db',
-  password: 'Nik132033',
-  port: 5432,
+  user: '',
+  host: '',
+  database: '',
+  password: '',
+  port: ,
 })
 
 const token = '6572869925:AAHF10URck10LHvmeenurxj9Auc-JRzrUu0';
