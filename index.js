@@ -1,6 +1,14 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
+const Pool = require('pg').Pool
+const pool = new Pool({
+  user: 'glunfront',
+  host: 'localhost',
+  database: 'gl_pl_db',
+  password: 'Nik132033',
+  port: 5432,
+})
 
 const token = '6572869925:AAHF10URck10LHvmeenurxj9Auc-JRzrUu0';
 const webAppUrl = 'https://flourishing-mermaid-7f2674.netlify.app';
@@ -87,5 +95,10 @@ app.post('/web-data', async (req, res) => {
 })
 
 app.get('/', (req, res) => {
-    res.json({ username: 'Flavio' })
+    pool.query('SELECT * FROM test_table', (error, results) => {
+        if (error) {
+            throw error
+        }
+        res.status(200).json(results.rows)
+    })
 })
