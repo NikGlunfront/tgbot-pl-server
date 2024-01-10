@@ -5,6 +5,7 @@ const cors = require('cors');
 const PORT = 8000;
 
 const { pool } = require('./config/db')
+const { token, webAppUrl } = require('./config/config')
 
 const token = '6572869925:AAHF10URck10LHvmeenurxj9Auc-JRzrUu0';
 const webAppUrl = 'https://flourishing-mermaid-7f2674.netlify.app';
@@ -115,16 +116,15 @@ app.post('/web-data', async (req, res) => {
     }
 })
 
-app.get('/', async (req, res) => {
-    let result
-    pool.query('SELECT * FROM test_table', (error, results) => {
+app.get('/', (req, res) => {
+    pool.query('SELECT * FROM test_table', async (error, results) => {
         if (error) {
             throw error
         }
-        result = results.rows
+        let result = results.rows
+        let resValue = await client.set("first_rds_key", JSON.stringify(result)); // кэшируем полученные данные
+        res.status(200).json(resValue)
     })
-    let resValue = await client.set("first_rds_key", JSON.stringify(result)); // кэшируем полученные данные
-    res.status(200).json(resValue)
 })
 app.get('/getredis', async (req, res) => {
     const cacheData = await client.get("first_rds_key"); // пытаемся получить переменную post из базы данных Redis
@@ -132,8 +132,7 @@ app.get('/getredis', async (req, res) => {
         res.status(200).json({cache_data: cacheData})
         
     } else {
-        res.status(500).json({error: 'error'})
-        
+        res.status(500).json({error: 'error'})  
     }
 })
 
