@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const PORT = 8000;
 
-const {pool} = require('./config/db')
+const { pool } = require('./config/db')
 
 const token = '6572869925:AAHF10URck10LHvmeenurxj9Auc-JRzrUu0';
 const webAppUrl = 'https://flourishing-mermaid-7f2674.netlify.app';
