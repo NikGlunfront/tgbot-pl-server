@@ -24,21 +24,21 @@ const redis = require("redis");
     await client.connect(); // подключаемся к серверу
 })();
 
-const onRequest = async (key, reqFunc) => {
-    let results; // заранее объявляем переменную для результата
+// const onRequest = async (key, reqFunc) => {
+//     let results; // заранее объявляем переменную для результата
 
-    const cacheData = await client.get(key); // пытаемся получить переменную post из базы данных Redis
+//     const cacheData = await client.get(key); // пытаемся получить переменную post из базы данных Redis
 
-    if(cacheData) {
-        results = JSON.parse(cacheData); // парсим данные из формата сырой строки в формат структуры
-    } else {
-        results = await reqFunc(); // вызываем функцию получения данных с удаленного сервера
-    if(results.length === 0) throw "API error"; // обрабатываем пустой результат ошибкой
-        await client.set(key, JSON.stringify(results)); // кэшируем полученные данные
-    }
+//     if(cacheData) {
+//         results = JSON.parse(cacheData); // парсим данные из формата сырой строки в формат структуры
+//     } else {
+//         results = await reqFunc(); // вызываем функцию получения данных с удаленного сервера
+//     if(results.length === 0) throw "API error"; // обрабатываем пустой результат ошибкой
+//         await client.set(key, JSON.stringify(results)); // кэшируем полученные данные
+//     }
 
-    return results;
-}
+//     return results;
+// }
 
 
 bot.on('message', async (msg) => {
