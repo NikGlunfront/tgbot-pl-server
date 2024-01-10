@@ -118,19 +118,8 @@ app.get('/', (req, res) => {
         if (error) {
             throw error
         }
-        let result = results.rows
-        let resValue = await client.set("first_rds_key", JSON.stringify(result)); // кэшируем полученные данные
-        res.status(200).json(resValue)
+        res.status(200).json(results.rows)
     })
-})
-app.get('/getredis', async (req, res) => {
-    const cacheData = await client.get("first_rds_key"); // пытаемся получить переменную post из базы данных Redis
-    if (cacheData) {
-        res.status(200).json({cache_data: cacheData})
-        
-    } else {
-        res.status(500).json({error: 'error'})  
-    }
 })
 
 app.listen(PORT, () => console.log('server started on port ' + PORT))
