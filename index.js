@@ -7,9 +7,6 @@ const PORT = 8000;
 const { pool } = require('./config/db')
 const { token, webAppUrl } = require('./config/config')
 
-const token = '6572869925:AAHF10URck10LHvmeenurxj9Auc-JRzrUu0';
-const webAppUrl = 'https://flourishing-mermaid-7f2674.netlify.app';
-
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
 
