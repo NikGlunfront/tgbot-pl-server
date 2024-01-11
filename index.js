@@ -2,6 +2,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
 
+// const testRouter = require('./routes/test.routes')
+
 const PORT = 8000;
 
 const { pool } = require('./config/db')
@@ -121,5 +123,7 @@ app.get('/', (req, res) => {
         res.status(200).json(results.rows)
     })
 })
+
+// app.use('/test', testRouter)
 
 app.listen(PORT, () => console.log('server started on port ' + PORT))
